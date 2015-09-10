@@ -41,3 +41,10 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.cache
+bin/Debug/FirebirdSql.Data.FirebirdClient.dll
+*.pdb
+obj/Debug/ActivityDesigner1.g.i.cs
+*.txt
+bin/Debug/CoreFramework.dll
+obj/Debug/CoreFramework.dll

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3677ABAB-BF98-44D9-A05C-CB1D0FF28806}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CoreFramework</RootNamespace>
+    <AssemblyName>CoreFramework</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommandConsole.cs" />
+    <Compile Include="NetConsoleRC.cs" />
+    <Compile Include="Net\CommonSession.cs" />
+    <Compile Include="Net\Event\Events.cs" />
+    <Compile Include="Net\INetEventSession.cs" />
+    <Compile Include="Net\Tcp\ClientSession.cs" />
+    <Compile Include="Net\Tcp\Common.cs" />
+    <Compile Include="Net\Network.cs" />
+    <Compile Include="Net\Tcp\ServerSession.cs" />
+    <Compile Include="Net\Tcp\TcpState.cs" />
+    <Compile Include="Net\Types\BaseMessageType.cs" />
+    <Compile Include="Net\Types\Basic\ChatType.cs" />
+    <Compile Include="Net\Types\Basic\DictionaryMessageType.cs" />
+    <Compile Include="Net\Types\Basic\NameChangeType.cs" />
+    <Compile Include="Net\Types\Basic\SignalType.cs" />
+    <Compile Include="Net\Types\INetMessageType.cs" />
+    <Compile Include="Net\Types\SymmetricMessageType.cs" />
+    <Compile Include="Net\Udp\ClientSession.cs" />
+    <Compile Include="Net\Udp\ServerSession.cs" />
+    <Compile Include="Net\Udp\UdpState.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Graph\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
