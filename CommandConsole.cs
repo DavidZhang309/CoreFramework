@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.IO;
 
 namespace CoreFramework
 {
@@ -10,14 +10,15 @@ namespace CoreFramework
         private string history = "";
 
         private Dictionary<string, ICommandHandler> commands;
+        public TextWriter Output { get; private set; } 
 
         public CommandConsole()
         {
             commands = new Dictionary<string, ICommandHandler>();
+            Output = Console.Out;
             Prefix = " >";
             StdoutPrefix = "[Console]";
         }
-        public bool PrintToStdout { get; set; }
         public string Prefix { get; set; }
         public string StdoutPrefix { get; set; }
 
@@ -28,7 +29,7 @@ namespace CoreFramework
         public void Print(string msg)
         {
             history += Prefix + msg + "\n";
-            if (PrintToStdout) System.Console.WriteLine(StdoutPrefix + Prefix + msg);
+            Output.WriteLine(StdoutPrefix + Prefix + msg);
         }
         public void Call(string command, bool printCommand)
         {

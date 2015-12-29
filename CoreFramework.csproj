@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandConsole.cs" />
+    <Compile Include="CommandTypes.cs" />
     <Compile Include="NetConsoleRC.cs" />
     <Compile Include="Net\CommonSession.cs" />
     <Compile Include="Net\Event\Events.cs" />
