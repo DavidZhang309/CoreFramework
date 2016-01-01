@@ -32,6 +32,10 @@ namespace CoreFramework
         {
             return commands.Keys.ToArray();
         }
+        public ICommandHandler GetCommand(string name)
+        {
+            return commands[name];
+        }
         public void Print(string msg)
         {
             string resultMsg = Prefix + msg;

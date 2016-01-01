@@ -25,7 +25,7 @@ namespace CoreFramework
 
     public class EventCmdArgs : EventArgs
     {
-        public EventCmdArgs(string[] args)
+        public EventCmdArgs(CommandConsole console, string[] args)
         {
             Arguments = args;
         }
@@ -47,7 +47,7 @@ namespace CoreFramework
 
         public void SetCommand(CommandConsole console, string[] args)
         {
-            if (OnCommand != null) OnCommand(this, new EventCmdArgs(args));
+            if (OnCommand != null) OnCommand(this, new EventCmdArgs(console, args));
         }
     }
 }
