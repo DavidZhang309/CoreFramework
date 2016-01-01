@@ -27,6 +27,7 @@ namespace CoreFramework
     {
         public EventCmdArgs(CommandConsole console, string[] args)
         {
+            ConsoleCaller = console;
             Arguments = args;
         }
 
