@@ -23,7 +23,18 @@ namespace CoreFramework
             Output = Console.Out;
             Prefix = " >";
         }
-        
+
+        private void Exec(object sender, EventCmdArgs args)
+        {
+            if (args.Arguments.Length == 1)
+                Execute(args.Arguments[0]);
+            else
+                Print("Usage: exec [file_path]");
+        }
+        public void RegisterDefaultCommands()
+        {
+            RegisterCommand("exec", new EventCommand(new Action<object, EventCmdArgs>(Exec)));
+        }
         public void RegisterCommand(string commandName, ICommandHandler handle)
         {
             commands.Add(commandName, handle);
@@ -35,6 +46,11 @@ namespace CoreFramework
         public ICommandHandler GetCommand(string name)
         {
             return commands[name];
+        }
+        public void Execute(string path)
+        {
+            foreach (string line in File.ReadAllLines(path))
+                Call(line, true, true);
         }
         public void Print(string msg)
         {
@@ -55,6 +71,40 @@ namespace CoreFramework
             }
 
         }
+
+        protected string[] ParseArgs(string arg)
+        {
+            bool isQuote = false;
+            int lastArg = 0;
+            bool isArg = false;
+            List<string> args = new List<string>();
+            string buffer = "";
+
+            for (int i = 0; i < arg.Length; i++)
+            {
+                if (arg[i] == '\"')
+                {
+                    isQuote = !isQuote;
+                }
+                else if (!isQuote && arg[i] == ' ') //space seperator outside quote
+                    isArg = true;
+                else
+                    buffer += arg[i];
+
+                if (i == arg.Length - 1)
+                    isArg = true;
+
+                if (isArg && buffer.Length != 0)
+                {
+                    args.Add(buffer);
+                    buffer = "";
+                    lastArg = i - 1;
+                    isArg = false;
+                }
+            }
+            return args.ToArray();
+        }
+
         public void Call(string command, bool printInput, bool printCommand)
         {
             string trimmed = command.Trim();
@@ -71,7 +121,7 @@ namespace CoreFramework
             //check and execute
             if (commands.ContainsKey(cmdName))
             {
-                string[] args = cmdNameIndex == -1 ? new string[] {} : trimmed.Substring(cmdNameIndex + 1).Split();
+                string[] args = cmdNameIndex == -1 ? new string[0] {} : ParseArgs(trimmed.Substring(cmdNameIndex + 1));
                 try
                 {
                     commands[cmdName].SetCommand(this, args);
